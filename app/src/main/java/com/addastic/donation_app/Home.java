@@ -16,8 +16,8 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btnLogin=(Button)findViewById(R.id.btnlogin);
-        btnSignup=(Button)findViewById(R.id.btnsignup);
+        btnLogin=(Button)findViewById(R.id.btnLogin);
+        btnSignup=(Button)findViewById(R.id.btnSignup);
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override

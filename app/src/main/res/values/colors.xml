@@ -11,6 +11,7 @@
     <color name="colorbc">#1AECC5</color>
     <color name="colorforbac">#FBF6E9</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorSecondaryDark">#001970</color>
 
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/colorforbac">
+    android:background="@drawable/redback">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,34 +16,36 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/donationicon"
+            android:src="@drawable/whiteicon"
             android:layout_marginLeft="95dp"
             android:layout_marginTop="35dp"
-            android:background="@drawable/border"
+
             />
 
         <EditText
-            android:id="@+id/edtPayment"
+            android:id="@+id/HosId"
             android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="45dp"
-            android:background="@drawable/border"
-            android:hint=" Enter the Amount(Min 5 INR)"
-            android:textSize="20sp"
-            android:padding="10dp"
+            android:layout_height="55dp"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="65dp"
+            android:hint="  Enter Money"
+            android:textColorHint="#FFFFFF"
             android:inputType="number"
+            android:background="@drawable/border"
+            android:layout_marginTop="80dp"/>
+
+        <ImageButton
+            android:id="@+id/btnPaytm"
+            android:layout_width="210dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="90dp"
+
+            android:src="@drawable/pa"
+
             />
 
-        <Button
-            android:id="@+id/btnPaytm"
-            android:layout_width="165dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="115dp"
-            android:layout_marginTop="35sp"
-            android:text="Paytm"
-            android:textSize="18sp"
-            android:background="@drawable/button"/>
+
 
 
 
