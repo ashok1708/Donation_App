@@ -6,20 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/redback">
+    android:orientation="vertical"
+    android:background="@color/colorForBack"
+
+    >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="340dp"
+            android:background="@drawable/rectangle"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="200dp"
+            android:layout_width="220dp"
             android:layout_height="200dp"
-            android:src="@drawable/whiteicon"
+            android:src="@drawable/iconrupees"
             android:layout_marginLeft="95dp"
-            android:layout_marginTop="35dp"
-
+            android:layout_marginTop="55dp"
             />
 
         <EditText
@@ -29,23 +46,23 @@
             android:paddingLeft="10dp"
             android:layout_marginLeft="65dp"
             android:hint="  Enter Money"
-            android:textColorHint="#FFFFFF"
             android:inputType="number"
-            android:background="@drawable/border"
-            android:layout_marginTop="80dp"/>
+            android:background="@drawable/border_2"
+            android:layout_marginTop="160dp"
+          />
 
-        <ImageButton
+
+        <Button
             android:id="@+id/btnPaytm"
-            android:layout_width="210dp"
-            android:layout_height="60dp"
+            android:layout_width="230dp"
+            android:layout_height="45dp"
             android:layout_marginTop="30dp"
-            android:layout_marginLeft="90dp"
-
-            android:src="@drawable/pa"
-
-            />
-
-
+            android:layout_marginLeft="100dp"
+            android:text="Pay by Paytm"
+            android:textSize="20dp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/button_drawable"/>
 
 
 

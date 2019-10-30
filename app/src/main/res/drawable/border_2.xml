@@ -15,9 +15,12 @@
 
 
 
+
             </stroke>
             <corners android:radius="20dip" />
             <solid android:color="#FFFFFF" />
+
         </shape>
+
     </item>
 </selector>

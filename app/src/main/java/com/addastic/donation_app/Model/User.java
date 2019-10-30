@@ -3,14 +3,14 @@ package com.addastic.donation_app.Model;
 public class User {
 
     private String Name;
-    private String Password;
+    private String Mail;
 
     public User() {
     }
 
-    public User(String name, String password) {
+    public User(String name, String mail) {
         Name = name;
-        Password = password;
+        Mail = mail;
     }
 
     public String getName() {
@@ -21,12 +21,12 @@ public class User {
         Name = name;
     }
 
-    public String getPassword() {
-        return Password;
+    public String getMail() {
+        return Mail;
     }
 
-    public void setPassword(String password) {
-        Password = password;
+    public void setmail(String mail) {
+        Mail = mail;
     }
 }
 

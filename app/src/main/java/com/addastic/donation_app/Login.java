@@ -1,6 +1,7 @@
 package com.addastic.donation_app;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -8,13 +9,16 @@ import androidx.core.content.ContextCompat;
 import android.animation.Animator;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
 
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -32,9 +36,15 @@ import static android.view.View.VISIBLE;
 public class Login extends AppCompatActivity {
 
 
-    EditText edtPhone,edtPassword;
-    Button btnSinIn;
+    EditText edtName,edtPhone,edtMail;
+    Button btnSubmit;
     DatabaseReference table_user;
+
+    TextView textView ;
+
+    String name,phone,mail="None";
+
+
 
 
     @Override
@@ -42,17 +52,21 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        edtName=(EditText)findViewById(R.id.edtName);
         edtPhone=(EditText)findViewById(R.id.edtMobile);
-        edtPassword=(EditText)findViewById(R.id.edtPass);
-        btnSinIn=(Button)findViewById(R.id.btnSubmit);
+        edtMail=(EditText)findViewById(R.id.edtMail);
+        btnSubmit=(Button)findViewById(R.id.btnSubmit);
 
+        textView= findViewById(R.id.btnSkip);
+        textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
 
         FirebaseApp.initializeApp(this);
 
         table_user = FirebaseDatabase.getInstance().getReference().child("user");
 
-        btnSinIn.setOnClickListener(new View.OnClickListener() {
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
@@ -60,41 +74,59 @@ public class Login extends AppCompatActivity {
                 mDialog.setMessage("Hold On...");
                 mDialog.show();
 
+
+
+                name=edtName.getText().toString();
+                phone=edtPhone.getText().toString();
+
+                if(!(edtMail.getText().toString().isEmpty())) {
+                    mail = edtMail.getText().toString();
+                }
+
+                if(name.isEmpty()&& phone.isEmpty()){
+                    Toast.makeText(Login.this, "enter the required information...", Toast.LENGTH_SHORT).show();
+                    mDialog.dismiss();
+                }
+                else{
+                    if(name.isEmpty()){
+                        Toast.makeText(Login.this, "enter the Name...", Toast.LENGTH_SHORT).show();
+                        mDialog.dismiss();
+                    }
+                    if (phone.isEmpty()){
+                        Toast.makeText(Login.this, "enter the Mobile Number...", Toast.LENGTH_SHORT).show();
+                        mDialog.dismiss();
+                    }
+                }
+
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-
-                        if(dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                        if(dataSnapshot.child(edtPhone.getText().toString()).exists()){
                             mDialog.dismiss();
-                            User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
-                            if (user.getPassword().equals(edtPassword.getText().toString()))
-                            {
-                                Intent homeIntent = new Intent(Login.this,MainActivity.class);
-                                Common.currentUsder = user;
-                                startActivity(homeIntent);
-                                finish();
+                            String msg="Welcome Back "+name.toUpperCase()+" ...";
+                            Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
 
-                            } else {
-                                Toast.makeText(Login.this, "Ohh Sorry Sign in Failed!", Toast.LENGTH_SHORT).show();
-                            }
                         }
-
-                        else
-                        {
+                        else{
                             mDialog.dismiss();
-                            Toast.makeText(Login.this,"Wrong Information!",Toast.LENGTH_SHORT).show();
+                            String msg="Welcome "+name.toUpperCase()+" ...";
+                            User user=new User(edtName.getText().toString(),edtMail.getText().toString());
+                            table_user.child(edtPhone.getText().toString()).setValue(user);
+                            Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
+
                         }
                     }
 
                     @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
+
+
             }
         });
-
 
     }
 }

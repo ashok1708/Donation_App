@@ -12,6 +12,8 @@
     <color name="colorforbac">#FBF6E9</color>
     <color name="colorBlack">#000000</color>
     <color name="colorSecondaryDark">#001970</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorForBack">#F3F2EF</color>
 
 
 </resources>
