@@ -9,6 +9,7 @@
         style="@style/parent">
 
         <RelativeLayout
+            android:id="@+id/rl1"
             style="@style/parent">
 
 
@@ -52,20 +53,19 @@
                     android:layout_marginTop="40dp"
                     android:src="@drawable/iconrupees"/>
                 <include
-                    layout="@layout/layout_login"/>
+                    layout="@layout/layout_success"/>
 
             </LinearLayout>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="10dp"
-                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+
+
+
         </RelativeLayout>
 
+
+
     </ScrollView>
+
 
 </RelativeLayout>
 

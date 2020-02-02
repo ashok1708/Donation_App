@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/loginCard"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:layout_marginBottom="@dimen/loginViewsMargin"
+    android:background="@color/whiteCardColor">
+
+
+
+    <LinearLayout
+        style="@style/linearParent"
+        android:layout_gravity="center"
+        android:padding="@dimen/loginViewsMargin">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_check_blue_24dp"/>
+
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="Payment Successful!"
+            android:textStyle="italic"
+
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+        <TextView
+            style="@style/headerTextPrimary"
+            android:text="Thanks for Contribution"
+            android:textSize="17dp"
+            android:textStyle="normal"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+
+        <Button
+            android:id="@+id/btnDone"
+            style="@style/loginButton"
+            android:text="Done"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"/>
+
+
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

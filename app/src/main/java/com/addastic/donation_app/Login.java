@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 
 
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,12 +53,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        edtName=(EditText)findViewById(R.id.edtName);
-        edtPhone=(EditText)findViewById(R.id.edtMobile);
-        edtMail=(EditText)findViewById(R.id.edtMail);
-        btnSubmit=(Button)findViewById(R.id.btnSubmit);
+        edtName=(EditText)findViewById(R.id.editTextName);
+        edtPhone=(EditText)findViewById(R.id.editTextPhone);
+        edtMail=(EditText)findViewById(R.id.editTextMail);
+        btnSubmit=(Button)findViewById(R.id.cirLoginButton);
 
-        textView= findViewById(R.id.btnSkip);
+        textView= findViewById(R.id.tvSkip);
         textView.setPaintFlags(textView.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
 
@@ -79,21 +80,19 @@ public class Login extends AppCompatActivity {
                 name=edtName.getText().toString();
                 phone=edtPhone.getText().toString();
 
-                if(!(edtMail.getText().toString().isEmpty())) {
-                    mail = edtMail.getText().toString();
-                }
+                if(TextUtils.isEmpty(name)&&TextUtils.isEmpty(phone)) {
+                    edtName.setError("Fill the Name.");
 
-                if(name.isEmpty()&& phone.isEmpty()){
-                    Toast.makeText(Login.this, "enter the required information...", Toast.LENGTH_SHORT).show();
+                    edtPhone.setError("Fill the Mobile Number.");
                     mDialog.dismiss();
                 }
                 else{
-                    if(name.isEmpty()){
-                        Toast.makeText(Login.this, "enter the Name...", Toast.LENGTH_SHORT).show();
+                    if(TextUtils.isEmpty(name)){
+                        edtName.setError("Fill the Name.");
                         mDialog.dismiss();
                     }
-                    if (phone.isEmpty()){
-                        Toast.makeText(Login.this, "enter the Mobile Number...", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(phone)){
+                        edtPhone.setError("Fill the Mobile Number.");
                         mDialog.dismiss();
                     }
                 }
@@ -106,6 +105,8 @@ public class Login extends AppCompatActivity {
                             mDialog.dismiss();
                             String msg="Welcome Back "+name.toUpperCase()+" ...";
                             Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
+                            Intent intent= new Intent(Login.this,MainActivity.class);
+                            startActivity(intent);
 
                         }
                         else{
@@ -114,6 +115,8 @@ public class Login extends AppCompatActivity {
                             User user=new User(edtName.getText().toString(),edtMail.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
+                            Intent intent= new Intent(Login.this,MainActivity.class);
+                            startActivity(intent);
 
                         }
                     }

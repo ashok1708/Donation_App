@@ -1,75 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/colorForBack"
+    style="@style/loginParent"
+    tools:context=".Login">
+    <ScrollView
+        style="@style/parent">
 
-    >
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
-
+        <RelativeLayout
+            style="@style/parent">
 
 
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="340dp"
-            android:background="@drawable/rectangle"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:weightSum="12">
+
+                <LinearLayout
+                    style="@style/parent"
+                    android:background="@drawable/login_shape_bk"
+                    android:layout_height="220dp"
+                    android:orientation="vertical"
+                    android:layout_weight="3">
+
+                    <ImageView
+                        style="@style/parent"
+                        android:layout_height="220dp"
+                        android:background="@drawable/ic_login_bk"
+                        android:contentDescription="login background" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp">
 
 
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="100dp"
+                    android:src="@drawable/iconrupees"/>
+                <include
+                    layout="@layout/layout_payment"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="10dp"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+        </RelativeLayout>
 
-        <ImageView
-            android:layout_width="220dp"
-            android:layout_height="200dp"
-            android:src="@drawable/iconrupees"
-            android:layout_marginLeft="95dp"
-            android:layout_marginTop="55dp"
-            />
-
-        <EditText
-            android:id="@+id/HosId"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="65dp"
-            android:hint="  Enter Money"
-            android:inputType="number"
-            android:background="@drawable/border_2"
-            android:layout_marginTop="160dp"
-          />
-
-
-        <Button
-            android:id="@+id/btnPaytm"
-            android:layout_width="230dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="100dp"
-            android:text="Pay by Paytm"
-            android:textSize="20dp"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button_drawable"/>
-
-
-
-    </LinearLayout>
-
-
-
-
+    </ScrollView>
 
 </RelativeLayout>
+
+
