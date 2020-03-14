@@ -47,10 +47,10 @@
 
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_marginLeft="100dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:src="@drawable/iconrupees"/>
                 <include
                     layout="@layout/layout_success"/>

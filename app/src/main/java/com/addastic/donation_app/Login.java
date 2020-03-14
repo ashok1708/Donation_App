@@ -5,25 +5,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import android.animation.Animator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-
-
 import android.text.Html;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import com.addastic.donation_app.Common.Common;
 import com.addastic.donation_app.Model.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -32,8 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
+
 public class Login extends AppCompatActivity {
 
 
@@ -106,6 +101,8 @@ public class Login extends AppCompatActivity {
                             String msg="Welcome Back "+name.toUpperCase()+" ...";
                             Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                             Intent intent= new Intent(Login.this,MainActivity.class);
+                            intent.putExtra("mobileNumber",edtPhone.getText().toString());
+                            intent.putExtra("name",edtName.getText().toString());
                             startActivity(intent);
 
                         }
@@ -116,6 +113,8 @@ public class Login extends AppCompatActivity {
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
                             Intent intent= new Intent(Login.this,MainActivity.class);
+                            intent.putExtra("mobileNumber",edtPhone.getText().toString());
+                            intent.putExtra("name",edtName.getText().toString());
                             startActivity(intent);
 
                         }

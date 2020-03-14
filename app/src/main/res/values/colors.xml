@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#00a5ff</color>
+    <color name="colorAccent">#6E08AC</color>
     <color name="ashokColor">#54D1F0</color>
     <color name="colorBackground">#333C46</color>
     <color name="colorSplashText">#F0F0F0</color>
@@ -18,7 +18,7 @@
 
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
-    <color name="primaryTextColor">#00a5ff</color>
+    <color name="primaryTextColor">#6E08AC</color>
     <color name="loginBkColor">#f0f0f0</color>
 
     <!--colros for card-->

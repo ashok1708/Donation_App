@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PaymentSuccess"></activity>
+        <activity android:name=".BottomNavigation"></activity>
+        <activity android:name=".PaymentSuccess" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Login" />
         <activity android:name=".Splash">

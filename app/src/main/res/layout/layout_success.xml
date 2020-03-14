@@ -23,6 +23,8 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_check_blue_24dp"/>
 
+
+
         <TextView
             style="@style/headerTextPrimary"
             android:text="Payment Successful!"

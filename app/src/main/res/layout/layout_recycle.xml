@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+ style="@style/loginParent"
+    app:cardCornerRadius="@dimen/loginCardRadius"
+    android:elevation="5dp"
+
+
+    android:background="@color/whiteCardColor">
+
+
+
+    <LinearLayout
+        style="@style/linearParent"
+    android:paddingTop="10dp"
+        android:orientation="vertical"
+       >
+
+        <ImageView
+            android:id="@+id/imgHome"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/pa"/>
+        <TextView
+            android:id="@+id/tvHome"
+            style="@style/headerTextPrimary"
+            android:text="Shastri Nagar,Jodhpur"
+            android:textSize="20dp"
+            android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

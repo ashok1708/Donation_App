@@ -1,121 +1,105 @@
 package com.addastic.donation_app;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
+
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-
-import com.shreyaspatil.EasyUpiPayment.EasyUpiPayment;
-import com.shreyaspatil.EasyUpiPayment.listener.PaymentStatusListener;
-import com.shreyaspatil.EasyUpiPayment.model.PaymentApp;
-import com.shreyaspatil.EasyUpiPayment.model.TransactionDetails;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements PaymentStatusListener {
 
 
 
-    Button btnPaytm;
-    EditText edtNote,edtAmount;
-    String TAG ="main";
-    final int UPI_PAYMENT = 0;
+import com.addastic.donation_app.fragments.HomeFragment;
+import com.addastic.donation_app.fragments.ListFragment;
+import com.addastic.donation_app.fragments.PayFragment;
+import com.addastic.donation_app.fragments.ProfileFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
+public class MainActivity extends AppCompatActivity {
+
+
+    BottomNavigationView bottomNavigation;
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnPaytm = findViewById(R.id.btnPay);
-        edtNote = findViewById(R.id.editTextNote);
-        edtAmount = findViewById(R.id.editTextAmount);
+       bottomNavigation = findViewById(R.id.bottom_navigation);
+       toolbar=findViewById(R.id.toolbar);
 
-        btnPaytm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pay(edtAmount.getText().toString(),edtNote.getText().toString());
-            }
-        });
-    }
-
-    void pay(String amount,String note)
-    {
-        EasyUpiPayment mEasyUpiPayment = new EasyUpiPayment.Builder()
-                .with(this)
-                .setPayeeVpa("naren4933@okicic")
-                .setPayeeName("Narendra Chouhan")
-                .setTransactionId("214545")
-                .setTransactionRefId("0212545")
-                .setDescription(note)
-                .setAmount(amount+".00")
-                .build();
-
-        // Register Listener for Events
-        mEasyUpiPayment.setPaymentStatusListener(this);
-
-
-
-        mEasyUpiPayment.startPayment();
-
-
+        bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        openFragment(HomeFragment.newInstance("", ""));
 
     }
-
-    @Override
-    public void onTransactionCompleted(TransactionDetails transactionDetails) {
-        // Transaction Completed
-        Log.d("TransactionDetails", transactionDetails.toString());
-        //statusView.setText(transactionDetails.toString());
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
-    @Override
-    public void onTransactionSuccess() {
-        // Payment Success
-        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-       // imageView.setImageResource(R.drawable.ic_success);
-        Intent intent= new Intent(MainActivity.this,PaymentSuccess.class);
-        startActivity(intent);
+    BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
+             new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.action_home:
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                toolbar.setTitle("Home");
+                            }
+                            openFragment(HomeFragment.newInstance("", ""));
+                            return true;
+                        case R.id.action_pay:
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                toolbar.setTitle("Payment");
+                            }
+                            openFragment(PayFragment.newInstance("", ""));
+                            return true;
+                        case R.id.action_list:
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                toolbar.setTitle("List");
+                            }
+                            openFragment(ListFragment.newInstance("", ""));
+                            return true;
+                        case R.id.action_profile:
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                toolbar.setTitle("Profile");
+                            }
+                            openFragment(ProfileFragment.newInstance("", ""));
+                            return true;
+                    }
+                    return false;
+                }
+            };
+
+    public void setNavigationVisibility(boolean visible) {
+        if (bottomNavigation.isShown() && !visible) {
+
+            bottomNavigation.animate().translationY(bottomNavigation.getHeight());
+            //bottomNavigation.setVisibility(View.GONE);
+        }
+        else if (!bottomNavigation.isShown() && visible){
+            bottomNavigation.animate().translationY(0);
+            //bottomNavigation.setVisibility(View.VISIBLE);
+        }
+    }
+    public void hideBottomNavigationView() {
+        bottomNavigation.animate().translationY(bottomNavigation.getHeight());
     }
 
-    @Override
-    public void onTransactionSubmitted() {
-        // Payment Pending
-        Toast.makeText(this, "Pending | Submitted", Toast.LENGTH_SHORT).show();
-        //imageView.setImageResource(R.drawable.ic_success);
+    public void showBottomNavigationView() {
+        bottomNavigation.animate().translationY(0);
     }
-
-    @Override
-    public void onTransactionFailed() {
-        // Payment Failed
-        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
-        //imageView.setImageResource(R.drawable.ic_failed);
-    }
-
-    @Override
-    public void onTransactionCancelled() {
-        // Payment Cancelled by User
-        Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT).show();
-        //imageView.setImageResource(R.drawable.ic_failed);
-    }
-
-    @Override
-    public void onAppNotFound() {
-        Toast.makeText(this, "App Not Found", Toast.LENGTH_SHORT).show();
-    }
-
 
 }
